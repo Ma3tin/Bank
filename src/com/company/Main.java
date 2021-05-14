@@ -64,14 +64,16 @@ public class Main {
                 }
             } else if (inputMenu == 3) {
                 System.out.print("Zadejte číslo účtu, ze kterého chcete peníze poslat: ");
-                long accountNumber = Long.parseLong(sc.nextLine());
+                BankAccount bankAccount1 = bank.findBankAccount(Long.parseLong(sc.nextLine()));
                 System.out.print("Zadejte číslo účtu, na který chcete peníze poslat: ");
-                long secondAccountNumber = Long.parseLong(sc.nextLine());
-                System.out.print("Zadejte částku kterou chcete poslat: ");
+                BankAccount bankAccount2 = bank.findBankAccount(Long.parseLong(sc.nextLine()));
+                System.out.print("Zadejte částku, kterou chtete poslat");
                 int amount = Integer.parseInt(sc.nextLine());
                 try {
-                    bank.sendMoney(accountNumber, secondAccountNumber, amount);
-                } catch (IndexOutOfBoundsException e) {
+                    bankAccount1.sendMoney(amount, bankAccount2);
+                    System.out.println("Zůstatek na prvním účtě: " + bankAccount1.getMoneyCount() + "Kč.");
+                    System.out.println("Zůstatek na prvním účtě: " + bankAccount2.getMoneyCount() + "Kč.");
+                } catch (NullPointerException e) {
                     System.out.println("Daný účet neexistuje");
                 }
             } else if (inputMenu == 4) {

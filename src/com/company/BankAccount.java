@@ -83,6 +83,13 @@ public class BankAccount {
         bankAccount.setMoneyCount(bankAccount.getMoneyCount() + amount);
     }
 
+    public void sendMoney(int amount, BankAccount target) {
+        if (getMoneyCount() <= amount) {
+            this.setMoneyCount(getMoneyCount() - amount);
+            target.setMoneyCount(target.getMoneyCount() + amount);
+        } else System.out.println("Nedostatek pěnez");
+    }
+
     public void removeMoney(int amount) {
         BankAccount bankAccount = new BankAccount();
         if (bankAccount.getMoneyCount() < amount) System.out.println("Nedostatek pěnez");

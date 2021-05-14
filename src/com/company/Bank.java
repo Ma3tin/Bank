@@ -33,25 +33,6 @@ public class Bank {
         }
     }
 
-    public void sendMoney(long accountNumber, long secondAccountNumber, int amount) {
-        int index = 0;
-        for (int i = 0; i < bankAccounts.size(); i++) {
-            if (bankAccounts.get(i).getMoneyCount() > amount) {
-                index = i;
-                if (bankAccounts.get(i).getAccountNumber() == accountNumber)
-                    bankAccounts.get(i).setMoneyCount(bankAccounts.get(i).getMoneyCount() - amount);
-            }
-        }
-        for (int i = 0; i < bankAccounts.size(); i++) {
-            if (bankAccounts.get(index).getMoneyCount() > amount) {
-                if (bankAccounts.get(i).getAccountNumber() == secondAccountNumber)
-                    bankAccounts.get(i).setMoneyCount(bankAccounts.get(i).getMoneyCount() + amount);
-            }
-        }
-        if (bankAccounts.get(index).getMoneyCount() < amount) {
-            System.out.println("Nedostatek pěnez");
-        }
-    }
     public BankAccount findBankAccount(long accountNumber) {
         for (int i = 0; i < bankAccounts.size(); i++) {
             if (bankAccounts.get(i).getAccountNumber() == accountNumber) return bankAccounts.get(i);
